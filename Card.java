@@ -15,10 +15,11 @@ public class Card{
 		value = initial_value;
 	}
 	int color; 
-	//	0 : Diamond
-	//	1 : Club
-	//	2 : Heart
-	//	3 : Spade
+	// 	0 : None
+	//	1 : Diamond
+	//	2 : Club
+	//	3 : Heart
+	//	4 : Spade
 	int value; 	
 	//	[1, 15]
 	private final int[] VALUE_LEVEL = new int[] {0, 12, 13, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15};

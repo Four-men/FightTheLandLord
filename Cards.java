@@ -75,7 +75,9 @@ public class Cards{
 	private int[] each;				// 	total of each kinds（每种卡牌的数量）	 
 	private int[] each_value;		//	value of each kinds（每种卡牌的价值）
 	private int[] value;			//	array of card value（卡牌价值的数组） 
-	
+
+	/* ************************************ */
+	//	don't mention it~
 	public boolean sameEach(int[] input){
 		if(input.length != each.length)
 			return false;
@@ -90,6 +92,7 @@ public class Cards{
 			return false;
 		return each_value[kind - 1] - each_value[kind - 2] == 1;
 	}
+	/* ************************************ */
 
 	public int king(){
 		if(kind < 1)
@@ -162,5 +165,9 @@ public class Cards{
 			if(remove[i] == 0)
 				result[j++] = card[i];
 		return new Cards(result);
+	}
+
+	public Card[] toArrayOfCard(){
+		return card;
 	}
 }

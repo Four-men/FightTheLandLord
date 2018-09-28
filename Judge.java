@@ -11,14 +11,15 @@ public class Judge{
 	}
 
 	private int type;				//	type of poker game（卡牌游戏的类型）
-	private Cards card;
+	private Deck deck;
+
 	private int[][] rule = new int[][] {
 		{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27}
 	};
 	private String[] type_name = new String[] {
 		"Fight the landlord"
 	};
-	private boolean check(int index){
+	private boolean check(Cards card, int index){
 		switch(index){
 			case 0:
 				return true;
@@ -109,18 +110,30 @@ public class Judge{
 		}
 	}
 
+	public void shuffle(){
+		switch(type){
+			case 0:
+				deck = new Deck(1, true);
+				break;
+			default:
+				break;
+		}
+	}
+
+	public Cards deal(int total){
+		return deck.deal(total);
+	}
+
 	public boolean isVaild(Cards input){
-		card = input;
 		for(int i = 0; i < rule[type].length; i++)
-			if(check(rule[type][i]))
+			if(check(input, rule[type][i]))
 				return true;
 		return false;
 	}
 
 	public int getId(Cards input){
-		card = input;
 		for(int i = 0; i < rule[type].length; i++)
-			if(check(rule[type][i]))
+			if(check(input, rule[type][i]))
 				return i;
 		return -1;
 	}

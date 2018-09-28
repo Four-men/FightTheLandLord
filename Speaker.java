@@ -11,7 +11,31 @@ public class Speaker{
 	}
 
 	private final int language;
-	private final String[][] COLOR_NAME = new String[][] {{"方块", "Diamond"}, {"梅花", "Club"}, {"红桃", "Heart"}, {"黑桃", "Spade"}};
+	private final String[][] CARD_COLOR_NAME = new String[][] {
+		{"", ""}, 
+		{"方块", "Diamond"}, 
+		{"梅花", "Club"}, 
+		{"红桃", "Heart"}, 
+		{"黑桃", "Spade"}
+	};
+	private final String[][] CARD_VALUE_NAME = new String[][] {
+		{"未知", "Unknown"},
+		{"A", "A"},
+		{"2", "2"},
+		{"3", "3"},
+		{"4", "4"},
+		{"5", "5"},
+		{"6", "6"},
+		{"7", "7"},
+		{"8", "8"},
+		{"9", "9"},
+		{"10", "10"},
+		{"J", "J"},
+		{"Q", "Q"},
+		{"K", "K"},
+		{"小王", "Queen"},
+		{"大王", "King"}
+	};
 	private final String[][] CARDS_NAME = new String[][]{
 		{"不出"},							// 	0
 		{"单张"},								
@@ -43,11 +67,15 @@ public class Speaker{
 		{"十三顺子"}
 	}; 
 
+	public void println(){
+		System.out.println();
+	}
+
 	public void print(Card input){
-		System.out.printf("%s %d", COLOR_NAME[input.color][language], input.value);
+		System.out.printf("%3s%3s", CARD_COLOR_NAME[input.color][language], CARD_VALUE_NAME[input.value][language]);
 	}
 	public void println(Card input){
-		System.out.printf("%s %d\n", COLOR_NAME[input.color][language], input.value);
+		System.out.printf("%3s%3s\n", CARD_COLOR_NAME[input.color][language], CARD_VALUE_NAME[input.value][language]);
 	}
 	
 	public void print(Cards input){
@@ -55,5 +83,14 @@ public class Speaker{
 	}
 	public void println(Cards input){
 		System.out.println(CARDS_NAME[new Judge().getId(input)][language]);
+	}
+
+	public void println(Card[] input){
+		for(int i = 0; i < input.length; i++)
+			System.out.printf("%2d:%3s%3s\n", i, CARD_COLOR_NAME[input[i].color][language], CARD_VALUE_NAME[input[i].value][language]);
+	}
+
+	public void println(Player input){
+		println(input.getSuit().toArrayOfCard());
 	}
 }
