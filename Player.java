@@ -23,6 +23,10 @@ public class Player{
 		suit = input;
 	}
 
+	public int size(){
+		return suit.toArrayOfCard().length;
+	}
+
 	public boolean win(){
 		return suit.isEmpty();
 	}
@@ -36,5 +40,9 @@ public class Player{
 
 	public void erase(int[] remove){
 		suit = suit.next(remove);
+	}
+
+	public void push(Cards input){
+		suit = suit.merge(input);
 	}
 }

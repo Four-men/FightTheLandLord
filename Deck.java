@@ -10,6 +10,14 @@ public class Deck{
 	Deck(int initial_deck_number, boolean with_king){
 		init(initial_deck_number, with_king);
 	}
+	Deck(Card[] input){
+		card = input;
+		remain_poker = card.length;
+	}
+	Deck(Cards input){
+		card = input.toArrayOfCard();
+		remain_poker = card.length;
+	}
 	
 	private Card[] card;
 	private int remain_poker;

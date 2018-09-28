@@ -23,15 +23,15 @@ public class Card{
 	int value; 	
 	//	[1, 15]
 	private final int[] VALUE_LEVEL = new int[] {0, 12, 13, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15};
+	public int compareTo(Card rhs){
+		//	return value(a) - value(b)
+		return VALUE_LEVEL[value] - VALUE_LEVEL[rhs.value]; 
+	}
 	public int compareToWithColor(Card rhs){
 		//	return value(a) - value(b)
 		if(value == rhs.value)
 			return color - rhs.color; 
 		return VALUE_LEVEL[value] - VALUE_LEVEL[rhs.value];
-	}
-	public int compareTo(Card rhs){
-		//	return value(a) - value(b)
-		return VALUE_LEVEL[value] - VALUE_LEVEL[rhs.value]; 
 	}
 	public int getColor(){
 		return color;

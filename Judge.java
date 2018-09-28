@@ -22,7 +22,7 @@ public class Judge{
 	private boolean check(Cards card, int index){
 		switch(index){
 			case 0:
-				return true;
+				return card.length() == 0;
 				//	不出
 			case 1:
 				return card.length() == 1;
@@ -61,10 +61,10 @@ public class Judge{
 				return card.length() == 6 && card.getKind() == 3 && card.isSequence() && card.sameEach(new int[]{2, 2, 2});
 				//	三连对
 			case 13:
-				return card.length() == 6 && card.getKind() == 6 && card.isSequence();
+				return card.length() == 6 && card.getKind() == 6 && card.isSequence() && card.king() == 0;
 				//	六顺子
 			case 14:
-				return card.length() == 7 && card.getKind() == 7 && card.isSequence();
+				return card.length() == 7 && card.getKind() == 7 && card.isSequence() && card.king() == 0;
 				// 	七顺子
 			case 15:
 				return card.length() == 8 && card.getKind() == 3 && card.sameEach(new int[]{2, 2, 4});
@@ -137,4 +137,21 @@ public class Judge{
 				return i;
 		return -1;
 	}
+
+	/* ************************ */
+	//	comparison	zone
+	public int compare(Card a, Card b){
+		return a.compareTo(b);
+	}
+	public int compare(Cards a, Cards b){
+		return a.compareTo(b);
+	}
+
+	public int compareWithColor(Card a, Card b){
+		return a.compareToWithColor(b);
+	}
+	public int compareWithColor(Cards a, Cards b){
+		return a.compareToWithColor(b);
+	}
+	/* ************************ */
 }

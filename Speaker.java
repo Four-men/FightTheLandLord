@@ -67,6 +67,7 @@ public class Speaker{
 		{"十三顺子"}
 	}; 
 
+	/* ********************* */
 	public void println(){
 		System.out.println();
 	}
@@ -93,4 +94,86 @@ public class Speaker{
 	public void println(Player input){
 		println(input.getSuit().toArrayOfCard());
 	}
+	/* ********************* */
+
+	public void gameTable(){
+		String[] prompt = new String[] {
+			"请输入整数进入游戏",
+			"Play game by entering a integer"
+		};
+		String[][] str = new String[][]
+		{
+			{"斗地主", "Fight the landlord"}
+		};
+		for(int i = 0; i < str.length; i++)
+			System.out.println(i + " : " + str[i][language]);
+		System.out.print(prompt[language] + ": ");
+	}
+
+	public void goodbye(){
+		String[] str = new String[] {
+			"再见，祝您游戏愉快",
+			"Goodbye and welcome bye"
+		};
+		System.out.println(str[language]);
+	}
+
+	/* ********************* */
+	//	in-game prompt
+	public void gameStart(){
+		String[] str = new String[] {
+			"游戏开始",
+			"Game start"
+		};
+		System.out.println(str[language]);
+	}
+
+	public void player(int index){
+		String[] str = new String[] {
+			"玩家 " + index, 
+			"Player " + index
+		};
+		System.out.println(str[language]);
+	}
+
+	public void chooseLandlord(){
+		String[] str = new String[] {
+			"输入非0成为地主",
+			"Enter non-zero integer to be the landlord"
+		};
+		System.out.println(str[language]);
+	}
+
+	public void isYourTurn(){
+		String[] str = new String[] {
+			"现在是您的回合了，请出牌",
+			"Your turn now"
+		};
+		System.out.println(str[language]);
+	}
+
+	public void congratulation(){
+		String[] str = new String[] {
+			"恭喜你，获得了胜利",
+			"You win, congratulation"
+		};
+		System.out.println(str[language]);
+	}
+
+	public void errorPlay(){
+		String[] str = new String[] {
+			"您出的牌不符合规则，请重新出牌",
+			"The poker-cards that you played are not vaild, play carefully please"
+		};
+		System.out.println(str[language]);
+	}
+
+	public void quitPrompt(){
+		String[] str = new String[] {
+			"输入quit退出游戏",
+			"Enter \"quit\" to quit"
+		};
+		System.out.println(str[language]);
+	}
+	/* ********************* */
 }

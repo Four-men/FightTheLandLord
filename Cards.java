@@ -139,32 +139,77 @@ public class Cards{
 		return false;
 	}
 
+	/* ************************* */
+	//	comparison here
+	//
+	//	if(a == {} AND b == {}):
+	//		a > b
+	public boolean biggerThan(Cards before){
+		if(before.isEmpty() || (!before.isBomb() && isBomb()) || king() == 2)
+			return true;
+		return getValue() > before.getValue() ? true : false;
+	}
 	public boolean biggerThanWithColor(Cards before){
 		if(before.isEmpty() || (!before.isBomb() && isBomb()) || king() == 2)
 			return true;
-		if(kind != before.getKind())
-			return false;
 		if(getValue() < before.getValue())
 			return false;
 		else if(getValue() == before.getValue())
 			return getColor() > before.getColor();
 		return true;
 	}
-	public boolean biggerThan(Cards before){
-		if(before.isEmpty() || (!before.isBomb() && isBomb()) || king() == 2)
-			return true;
-		if(kind != before.getKind())
-			return false;
-		return getValue() > before.getValue() ? true : false;
+
+	public boolean smallerThan(Cards before){
+		return before.biggerThan(new Cards(card));
 	}
+	public boolean smallerThanWithColor(Cards before){
+		return before.biggerThanWithColor(new Cards(card));
+	}
+
+	public boolean equals(Cards before){
+		return !smallerThan(before) && !biggerThan(before);
+	}
+	public boolean equalsWithColor(Cards before){
+		return !smallerThanWithColor(before) && !biggerThanWithColor(before);
+	}
+
+	public int compareTo(Cards before){
+		if(biggerThan(before))
+			return 1;
+		return equals(before) ? 0 : -1;
+	}
+	public int compareToWithColor(Cards before){
+		if(biggerThanWithColor(before))
+			return 1;
+		return equalsWithColor(before) ? 0 : -1;
+	}
+	/* ************************** */
 
 	//	generate next class Cards
 	public Cards next(int[] remove){
-		Card[] result = new Card[card.length - remove.length];
+		int length = card.length;
+		for(int i = 0; i < remove.length; i++)
+			if(remove[i] != 0)
+				length -= 1;
+		Card[] result = new Card[length];
 		for(int i = 0, j = 0; i < card.length; i++)
 			if(remove[i] == 0)
 				result[j++] = card[i];
 		return new Cards(result);
+	}
+
+	//	push a Card[]
+	public Cards merge(Card[] input){
+		Card[] buffer = new Card[length() + input.length];
+		for(int i = 0; i < card.length; i++)
+			buffer[i] = card[i];
+		for(int i = card.length; i < buffer.length; i++)
+			buffer[i] = input[i - card.length];
+		return new Cards(buffer);
+	}
+	//	push a Cards
+	public Cards merge(Cards input){
+		return input.merge(toArrayOfCard());
 	}
 
 	public Card[] toArrayOfCard(){
