@@ -27,6 +27,8 @@ public class FightTheLandlord{
 		output = new Speaker(LANGUAGE);
 		Random rand = new Random();
 		dealer = rand.nextInt(3);
+		for(int i = 0; i < player.length; i++)
+			player[i] = new Player();
 	}
 
 	public void work(){
@@ -36,11 +38,15 @@ public class FightTheLandlord{
 			output.gameStart();
 			jd.shuffle();
 			for(int i = 0; i < player.length; i++)
-				player[i] = new Player(jd.deal(17));
+				player[i].initial(jd.deal(17));
+			for(int i = 0; i < player.length; i++){
+				output.playerId(i);
+				output.playerScore(player[i]);
+			}
 			hidden = jd.deal(3);
 			landlord = -1;
 			for(int i = dealer, j = 0; j < 3; i = (i + 1) % 3, j++){
-				output.player(i);
+				output.playerId(i, i == landlord);
 				output.chooseLandlord();
 				int sign = input.nextInt();
 				input.nextLine();
@@ -54,8 +60,10 @@ public class FightTheLandlord{
 			player[landlord].push(hidden);
 
 			Cards before = new Cards(new Card[] {});
+			int attacker = landlord;
+			int times = 1;
 			for(int i = landlord; ; i = (i + 1) % 3){
-				output.player(i);
+				output.playerId(i, i == landlord);
 				output.println(player[i]);
 				output.isYourTurn();
 				while(true){
@@ -73,25 +81,38 @@ public class FightTheLandlord{
 								store[val] = 1;
 						}
 					Cards current = player[i].playCards(store);
-					if(!jd.isVaild(current) || (str.length() > 0 && jd.compare(current, before) <= 0)){
+					if(!jd.isVaild(current) || (i != attacker && str.length() > 0 && jd.compare(current, before) <= 0)){
 						output.errorPlay();
 						continue;
 					}
 					player[i].erase(store);
 					output.println(current);
 					output.println(current.toArrayOfCard());
-					before = current;
+					if(str.length() > 0 || i == attacker){
+						attacker = i;
+						before = current;
+					}
 					break;
 				}
 				if(player[i].win()){
-					output.player(i);
+					if(i == landlord){
+						player[i].gain(6 * (int)Math.pow(2, times));
+						player[(i + 1) % 3].gain(-3 * (int)Math.pow(2, times));
+						player[(i + 2) % 3].gain(-3 * (int)Math.pow(2, times));
+					}
+					else{
+						player[landlord].gain(-6 * (int)Math.pow(2, times));
+						player[(landlord + 1) % 3].gain(3 * (int)Math.pow(2, times));
+						player[(landlord + 2) % 3].gain(3 * (int)Math.pow(2, times));
+					}
+					output.playerId(i, i == landlord);
 					output.congratulation();
 					dealer = i;
 					break;
 				}
 			}
-			String tmp = input.next();
 			output.quitPrompt();
+			String tmp = input.next();
 			if(tmp.equals("quit"))
 				break;
 		}

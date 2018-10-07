@@ -19,7 +19,7 @@ public class Player{
 		return suit;
 	}
 
-	public void read(Cards input){
+	public void initial(Cards input){
 		suit = input;
 	}
 
@@ -44,5 +44,9 @@ public class Player{
 
 	public void push(Cards input){
 		suit = suit.merge(input);
+	}
+
+	public void gain(int value){
+		score += value;
 	}
 }

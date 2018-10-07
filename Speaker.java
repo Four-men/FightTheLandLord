@@ -85,7 +85,7 @@ public class Speaker{
 	public void println(Cards input){
 		System.out.println(CARDS_NAME[new Judge().getId(input)][language]);
 	}
-
+	
 	public void println(Card[] input){
 		for(int i = 0; i < input.length; i++)
 			System.out.printf("%2d:%3s%3s\n", i, CARD_COLOR_NAME[input[i].color][language], CARD_VALUE_NAME[input[i].value][language]);
@@ -128,10 +128,27 @@ public class Speaker{
 		System.out.println(str[language]);
 	}
 
-	public void player(int index){
+	public void star(boolean bool){
+		if(bool == true)
+			System.out.print("*");
+	}
+
+	public void playerId(int index){
 		String[] str = new String[] {
 			"玩家 " + index, 
 			"Player " + index
+		};
+		System.out.println(str[language]);
+	}
+	public void playerId(int index, boolean landlord){
+		star(landlord);
+		playerId(index);
+	}
+
+	public void playerScore(Player input){
+		String[] str = new String[] {
+			"得分: " + input.score,
+			"Score: " + input.score
 		};
 		System.out.println(str[language]);
 	}
