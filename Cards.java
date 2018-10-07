@@ -6,7 +6,7 @@ public class Cards{
 	/**
 	 * suit of Card
 	 */
-	Cards(Card[] initial_cards){
+	public Cards(Card[] initial_cards){
 		card = initial_cards; 	// initial
 
 		/* ************************ */

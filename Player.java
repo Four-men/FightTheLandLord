@@ -3,10 +3,10 @@ package HuangSiyuan;
 import HuangSiyuan.*;
 
 public class Player{
-	Player(){
+	public Player(){
 		score = 0;
 	}
-	Player(Cards initial_suit){
+	public Player(Cards initial_suit){
 		score = 0;
 		suit = initial_suit;
 	}

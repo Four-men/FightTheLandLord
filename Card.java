@@ -6,11 +6,11 @@ public class Card{
 	/**
 	 * poker card
 	 */
-	Card(int initial_value){
+	public Card(int initial_value){
 		color = 0;
 		value = initial_value;
 	}
-	Card(int initial_color, int initial_value){
+	public Card(int initial_color, int initial_value){
 		color = initial_color;
 		value = initial_value;
 	}

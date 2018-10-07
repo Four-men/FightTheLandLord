@@ -3,10 +3,10 @@ package HuangSiyuan;
 import HuangSiyuan.*;
 
 public class Judge{
-	Judge(){
+	public Judge(){
 		type = 0;
 	}
-	Judge(int initial_type){
+	public Judge(int initial_type){
 		type = initial_type;
 	}
 

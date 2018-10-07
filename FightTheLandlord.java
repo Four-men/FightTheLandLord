@@ -6,10 +6,10 @@ import java.lang.Character;
 import HuangSiyuan.*;
 
 public class FightTheLandlord{
-	FightTheLandlord(){
+	public FightTheLandlord(){
 		LANGUAGE = 0;
 	}
-	FightTheLandlord(int initial_language){
+	public FightTheLandlord(int initial_language){
 		LANGUAGE = initial_language;
 	}
 	private final int LANGUAGE;

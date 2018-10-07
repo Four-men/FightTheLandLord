@@ -3,10 +3,10 @@ package HuangSiyuan;
 import HuangSiyuan.*;
 
 public class Speaker{
-	Speaker(){
+	public Speaker(){
 		language = 0;
 	}
-	Speaker(int initial_language){
+	public Speaker(int initial_language){
 		language = initial_language;
 	}
 

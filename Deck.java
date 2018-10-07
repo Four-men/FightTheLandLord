@@ -4,17 +4,17 @@ import java.util.Random;
 import HuangSiyuan.*;
 
 public class Deck{
-	Deck(){
+	public Deck(){
 		init(1, true);
 	}
-	Deck(int initial_deck_number, boolean with_king){
+	public Deck(int initial_deck_number, boolean with_king){
 		init(initial_deck_number, with_king);
 	}
-	Deck(Card[] input){
+	public Deck(Card[] input){
 		card = input;
 		remain_poker = card.length;
 	}
-	Deck(Cards input){
+	public Deck(Cards input){
 		card = input.toArrayOfCard();
 		remain_poker = card.length;
 	}
